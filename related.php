@@ -27,8 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 
-if (!class_exists('Related')) :
-	class Related {
+if (!class_exists('Related_art')) :
+	class Related_art {
 
 		// Constructor
 		public function __construct() {
@@ -66,7 +66,7 @@ if (!class_exists('Related')) :
 			
 			// Adds a meta box for related posts to the edit screen of each post type in WordPress
 			foreach (get_post_types() as $post_type) :
-				add_meta_box($post_type . '-related-posts-box', 'Related posts', array(&$this, 'displayMetaBox'), $post_type, 'normal', 'high');
+				add_meta_box($post_type . '-related-posts-box', 'Related Articles', array(&$this, 'displayMetaBox'), $post_type, 'normal', 'high');
 			endforeach;
 		}
 
@@ -159,7 +159,7 @@ if (!class_exists('Related')) :
 					</select>
 				</p>
 				<p>
-					Select related posts from the list. Drag selected ones to change order.
+					Select related articles from the list. Drag selected ones to change order.
 				</p>';
 		}
 
@@ -210,8 +210,8 @@ endif;
 
 // Start the plugin
 
-global $related;
+global $related_art;
 
-$related = new Related();
+$related_art = new Related_art();
 
 ?>
