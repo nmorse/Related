@@ -74,16 +74,16 @@ if (!class_exists('Related_art')) :
 		// Load Javascript
 		public function loadScripts() {
 		
-			//wp_enqueue_script('jquery-ui-core');
-			//wp_enqueue_script('jquery-ui-sortable');
-			//wp_enqueue_script('related-scripts', RELATED_URLPATH .'/scripts.js', false, RELATED_VERSION);
+			wp_enqueue_script('jquery-ui-core');
+			wp_enqueue_script('jquery-ui-sortable');
+			wp_enqueue_script('related-art-scripts', RELATED_URLPATH .'/related-art', false, RELATED_VERSION);
 		}
 
 
 		// Load CSS
 		public function loadCSS() {
 		
-			//wp_enqueue_style('related-css', RELATED_URLPATH .'/styles.css', false, RELATED_VERSION, 'all');
+			wp_enqueue_style('related-art-css', RELATED_URLPATH .'/related-art.css', false, RELATED_VERSION, 'all');
 		}
 
 
@@ -144,8 +144,8 @@ if (!class_exists('Related_art')) :
 			
 			$p = new WP_Query($query);
 			
-			if ($p->have_arts()) :
-				while ($p->have_arts()) :
+			if ($p->have_posts()) :
+				while ($p->have_posts()) :
 					$p->the_post();
 					echo '
 						<option value="' . get_the_ID() . '">' . get_the_title() . ' (' . ucfirst(get_post_type(get_the_ID())) . ')</option>';
