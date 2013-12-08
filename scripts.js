@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 	
-	$('#related-arts').sortable();		
+	//$('#related-arts').sortable();
 	
 	$('#related-recs-select').change(function() {
 		var select = $(this),
@@ -42,6 +42,6 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 	
-	$('#related-recs').sortable();
+	//$('#related-recs').sortable();
 	
 });
