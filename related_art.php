@@ -47,8 +47,8 @@ if (!class_exists('Related_art')) :
 		// Defines a few static helper values we might need
 		protected function defineConstants() {
 
-			define('RELATED_VERSION', '1.1.1');
-			define('RELATED_HOME', 'https://github.com/matthiassiegel/Related');
+			define('RELATED_VERSION', '1.1.10');
+			define('RELATED_HOME', 'https://github.com/matthiassiegel/Related_Art2');
 			define('RELATED_FILE', plugin_basename(dirname(__FILE__)));
 			define('RELATED_ABSPATH', str_replace('\\', '/', WP_PLUGIN_DIR . '/' . plugin_basename(dirname(__FILE__))));
 			define('RELATED_URLPATH', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)));
@@ -74,16 +74,16 @@ if (!class_exists('Related_art')) :
 		// Load Javascript
 		public function loadScripts() {
 		
-			wp_enqueue_script('jquery-ui-core');
-			wp_enqueue_script('jquery-ui-sortable');
-			wp_enqueue_script('related-scripts', RELATED_URLPATH .'/scripts.js', false, RELATED_VERSION);
+			//wp_enqueue_script('jquery-ui-core');
+			//wp_enqueue_script('jquery-ui-sortable');
+			//wp_enqueue_script('related-scripts', RELATED_URLPATH .'/scripts.js', false, RELATED_VERSION);
 		}
 
 
 		// Load CSS
 		public function loadCSS() {
 		
-			wp_enqueue_style('related-css', RELATED_URLPATH .'/styles.css', false, RELATED_VERSION, 'all');
+			//wp_enqueue_style('related-css', RELATED_URLPATH .'/styles.css', false, RELATED_VERSION, 'all');
 		}
 
 
@@ -104,7 +104,7 @@ if (!class_exists('Related_art')) :
 
 		// Creates the output on the post screen
 		public function displayMetaBox() {
-			
+        
 			global $post;
 			
 			$post_id = $post->ID;
@@ -118,9 +118,9 @@ if (!class_exists('Related_art')) :
 				foreach($related as $r) :
 					$p = get_post($r);
 					echo '
-						<div class="related-post" id="related-post-' . $r . '">
+						<div class="related-art" id="related-art-' . $r . '">
 							<input type="hidden" name="related-arts[]" value="' . $r . '">
-							<span class="related-post-title">' . $p->post_title . ' (' . ucfirst(get_post_type($p->ID)) . ')</span>
+							<span class="related-art-title">' . $p->post_title . ' (' . ucfirst(get_post_type($p->ID)) . ')</span>
 							<a href="#">Delete</a>
 						</div>';
 				endforeach;
