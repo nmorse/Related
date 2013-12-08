@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Related
+Plugin Name: Related_Art
 Plugin URI: https://github.com/matthiassiegel/Related
 Description: A simple 'related posts' plugin that lets you select related posts manually instead of automatically generating the list.
 Version: 1.1.1
