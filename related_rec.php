@@ -76,14 +76,14 @@ if (!class_exists('Related_rec')) :
 		
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-sortable');
-			wp_enqueue_script('related-scripts', RELATED_URLPATH .'/scripts.js', false, RELATED_VERSION);
+			wp_enqueue_script('related-rec-scripts', RELATED_URLPATH .'/related-rec.js', false, RELATED_VERSION);
 		}
 
 
 		// Load CSS
 		public function loadCSS() {
 		
-			wp_enqueue_style('related-css', RELATED_URLPATH .'/styles.css', false, RELATED_VERSION, 'all');
+			wp_enqueue_style('related-rec-css', RELATED_URLPATH .'/related-rec.css', false, RELATED_VERSION, 'all');
 		}
 
 

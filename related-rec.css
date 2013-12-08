@@ -1,21 +1,3 @@
-.related-art {
-  font-size: 11px;
-  margin: 6px 6px 8px;
-  padding: 8px;
-  background: #f1f1f1;
-  border: 1px solid #dfdfdf;
-  cursor: pointer;
-  
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-}
-.related-art-title {
-  padding: 0 30px 0 0;
-}
-.related-art a {
-  float: right;
-}
 
 .related-rec {
   font-size: 11px;
