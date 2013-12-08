@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Related_Art
-Plugin URI: https://github.com/matthiassiegel/Related
-Description: A simple 'related posts' plugin that lets you select related posts manually instead of automatically generating the list.
+Plugin URI: https://github.com/matthiassiegel/Related_art
+Description: A simple 'related art' plugin that lets you select related posts manually instead of automatically generating the list.
 Version: 1.1.1
 Author: Matthias Siegel
-Author URI: https://github.com/matthiassiegel/Related
+Author URI: https://github.com/matthiassiegel/Related_art
 
 
 Copyright 2010-2012  Matthias Siegel  (email: matthias.siegel@gmail.com)
@@ -76,7 +76,7 @@ if (!class_exists('Related_art')) :
 		
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-sortable');
-			wp_enqueue_script('related-art-scripts', RELATED_URLPATH .'/related-art', false, RELATED_VERSION);
+			wp_enqueue_script('related-art-scripts', RELATED_URLPATH .'/related-art.js', false, RELATED_VERSION);
 		}
 
 

@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Related_Rec
-Plugin URI: https://github.com/matthiassiegel/Related
+Plugin URI: https://github.com/matthiassiegel/Related_rec
 Description: A simple 'related rec' plugin that lets you select related recs manually instead of automatically generating the list.
 Version: 1.1.1
 Author: Matthias Siegel
-Author URI: https://github.com/matthiassiegel/Related
+Author URI: https://github.com/matthiassiegel/Related_rec
 
 
 Copyright 2010-2012  Matthias Siegel  (email: matthias.siegel@gmail.com)
