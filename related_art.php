@@ -66,7 +66,7 @@ if (!class_exists('Related_art')) :
 			
 			// Adds a meta box for related posts to the edit screen of each post type in WordPress
 			foreach (get_post_types() as $post_type) :
-				add_meta_box($post_type . '-related-posts-box', 'Related Articles', array(&$this, 'displayMetaBox'), $post_type, 'normal', 'high');
+				add_meta_box($post_type . '-related-arts-box', 'Related Articles', array(&$this, 'displayMetaBox'), $post_type, 'normal', 'high');
 			endforeach;
 		}
 
@@ -94,10 +94,10 @@ if (!class_exists('Related_art')) :
 			
 			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-			if (!isset($_POST['related-posts']) || empty($_POST['related-posts'])) :
-				delete_post_meta($id, 'related_posts');
+			if (!isset($_POST['related-arts']) || empty($_POST['related-arts'])) :
+				delete_post_meta($id, 'related_arts');
 			else :
-				update_post_meta($id, 'related_posts', $_POST['related-posts']);
+				update_post_meta($id, 'related_arts', $_POST['related-arts']);
 			endif;			
 		}
 
@@ -109,17 +109,17 @@ if (!class_exists('Related_art')) :
 			
 			$post_id = $post->ID;
 			
-			echo '<div id="related-posts">';
+			echo '<div id="related-arts">';
 			
 			// Get related posts if existing
-			$related = get_post_meta($post_id, 'related_posts', true);
+			$related = get_post_meta($post_id, 'related_arts', true);
 
 			if (!empty($related)) :
 				foreach($related as $r) :
 					$p = get_post($r);
 					echo '
 						<div class="related-post" id="related-post-' . $r . '">
-							<input type="hidden" name="related-posts[]" value="' . $r . '">
+							<input type="hidden" name="related-arts[]" value="' . $r . '">
 							<span class="related-post-title">' . $p->post_title . ' (' . ucfirst(get_post_type($p->ID)) . ')</span>
 							<a href="#">Delete</a>
 						</div>';
@@ -129,7 +129,7 @@ if (!class_exists('Related_art')) :
 			echo '
 				</div>
 				<p>
-					<select id="related-posts-select" name="related-posts-select">
+					<select id="related-arts-select" name="related-arts-select">
 						<option value="0">Select</option>';
 			
 			$query = array(
@@ -144,8 +144,8 @@ if (!class_exists('Related_art')) :
 			
 			$p = new WP_Query($query);
 			
-			if ($p->have_posts()) :
-				while ($p->have_posts()) :
+			if ($p->have_arts()) :
+				while ($p->have_arts()) :
 					$p->the_post();
 					echo '
 						<option value="' . get_the_ID() . '">' . get_the_title() . ' (' . ucfirst(get_post_type(get_the_ID())) . ')</option>';
@@ -170,7 +170,7 @@ if (!class_exists('Related_art')) :
 			global $wpdb;
 
 			if (!empty($id) && is_numeric($id)) :
-				$related = get_post_meta($id, 'related_posts', true);
+				$related = get_post_meta($id, 'related_arts', true);
 				
 				if (!empty($related)) :
 					$rel = array();
@@ -185,7 +185,7 @@ if (!class_exists('Related_art')) :
 						
 					// Otherwise return a formatted list
 					else :
-						$list = '<ul class="related-posts">';
+						$list = '<ul class="related-arts">';
 						foreach ($rel as $r) :
 							$list .= '<li><a href="' . get_permalink($r->ID) . '">' . $r->post_title . '</a></li>';
 						endforeach;
