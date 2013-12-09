@@ -129,6 +129,7 @@ if (!class_exists('Related_art')) :
 						<div class="related-art" id="related-art-' . $r->post_name . '">
 							<input type="hidden" name="related-arts[]" value="' . $r->post_name . '">
 							<span class="related-art-title">' . $p->post_title . ' (' . ucfirst(get_post_type($p->ID)) . ')</span>
+							<span>' . is_numeric($r) . '</span>
 							<a href="#">Delete</a>
 						</div>';
 				endforeach;
@@ -183,18 +184,18 @@ if (!class_exists('Related_art')) :
 				if (!empty($related)) :
 					$rel = array();
 					foreach ($related as $r) :
-						if (!is_numeric($r)) {
-							$args=array(
-								'name' => $r,
-								'post_type' => 'post',
-								'post_status' => 'publish',
-								'posts_per_page' => 1
-							);
-							$this_posts = get_posts( $args );
-							if( $my_posts ) {
-								$r = $this_posts[0]->ID;
-							}
-						}
+						//if (!is_numeric($r)) {
+						//	$args=array(
+						//		'name' => $r,
+						//		'post_type' => 'post',
+						//		'post_status' => 'publish',
+						//		'posts_per_page' => 1
+						//	);
+						//	$this_posts = get_posts( $args );
+						//	if( $my_posts ) {
+						//		$r = $this_posts[0]->ID;
+						//	}
+						//}
 						$p = get_post($r);
 						$rel[] = $p;
 					endforeach;
