@@ -112,18 +112,18 @@ if (!class_exists('Related_art')) :
 
 			if (!empty($related)) :
 				foreach($related as $r) :
-					if (!is_numeric($r)) {
-						$args=array(
-							'name' => $r,
-							'post_type' => 'post',
-							'post_status' => 'publish',
-							'posts_per_page' => 1
-						);
-						$this_posts = get_posts( $args );
-						if( $my_posts ) {
-							$r = $this_posts[0]->ID;
-						}
-					}
+					//if (!is_numeric($r)) {
+					//	$args=array(
+					//		'name' => $r,
+					//		'post_type' => 'post',
+					//		'post_status' => 'publish',
+					//		'posts_per_page' => 1
+					//	);
+					//	$this_posts = get_posts( $args );
+					//	if( $my_posts ) {
+					//		$r = $this_posts[0]->ID;
+					//	}
+					//}
 					$p = get_post($r);
 					echo '
 						<div class="related-art" id="related-art-' . $r->post_name . '">
@@ -131,7 +131,6 @@ if (!class_exists('Related_art')) :
 							<span class="related-art-title">' . $p->post_title . ' (' . ucfirst(get_post_type($p->ID)) . ')</span>
 							<a href="#">Delete</a>
 						</div>';
-						
 				endforeach;
 			endif;
 			
@@ -157,7 +156,7 @@ if (!class_exists('Related_art')) :
 				while ($p->have_posts()) :
 					$p->the_post();
 					echo '
-						<option value="' . get_the_name() . '">' . get_the_title() . ' (' . ucfirst(get_post_type(get_the_ID())) . ')</option>';
+						<option value="' . get_the_ID() . '">' . get_the_title() . ' (' . ucfirst(get_post_type(get_the_ID())) . ')</option>';
 				endwhile;
 			endif;
 			
