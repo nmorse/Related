@@ -46,18 +46,16 @@ if (!class_exists('Related_art')) :
 
 		// Defines a few static helper values we might need
 		protected function defineConstants() {
-
 			define('RELATED_VERSION', '1.1.10');
 			define('RELATED_HOME', 'https://github.com/matthiassiegel/Related_Art2');
 			define('RELATED_FILE', plugin_basename(dirname(__FILE__)));
 			define('RELATED_ABSPATH', str_replace('\\', '/', WP_PLUGIN_DIR . '/' . plugin_basename(dirname(__FILE__))));
 			define('RELATED_URLPATH', WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)));
 		}
-				
-		
+
+
 		// Main function
 		public function start() {
-			
 			// Load the scripts
 			add_action('admin_print_scripts', array(&$this, 'loadScripts'));
 			
@@ -73,7 +71,6 @@ if (!class_exists('Related_art')) :
 
 		// Load Javascript
 		public function loadScripts() {
-		
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('related-art-scripts', RELATED_URLPATH .'/related-art.js', false, RELATED_VERSION);
@@ -82,7 +79,6 @@ if (!class_exists('Related_art')) :
 
 		// Load CSS
 		public function loadCSS() {
-		
 			wp_enqueue_style('related-art-css', RELATED_URLPATH .'/related-art.css', false, RELATED_VERSION, 'all');
 		}
 
@@ -98,7 +94,7 @@ if (!class_exists('Related_art')) :
 				delete_post_meta($id, 'related_arts');
 			else :
 				update_post_meta($id, 'related_arts', $_POST['related-arts']);
-			endif;			
+			endif;
 		}
 
 
@@ -116,13 +112,26 @@ if (!class_exists('Related_art')) :
 
 			if (!empty($related)) :
 				foreach($related as $r) :
+					if (!is_numeric($r)) {
+						$args=array(
+							'name' => $r,
+							'post_type' => 'post',
+							'post_status' => 'publish',
+							'posts_per_page' => 1
+						);
+						$this_posts = get_posts( $args );
+						if( $my_posts ) {
+							$r = $this_posts[0]->ID;
+						}
+					}
 					$p = get_post($r);
 					echo '
-						<div class="related-art" id="related-art-' . $r . '">
-							<input type="hidden" name="related-arts[]" value="' . $r . '">
+						<div class="related-art" id="related-art-' . $r->post_name . '">
+							<input type="hidden" name="related-arts[]" value="' . $r->post_name . '">
 							<span class="related-art-title">' . $p->post_title . ' (' . ucfirst(get_post_type($p->ID)) . ')</span>
 							<a href="#">Delete</a>
 						</div>';
+						
 				endforeach;
 			endif;
 			
@@ -148,7 +157,7 @@ if (!class_exists('Related_art')) :
 				while ($p->have_posts()) :
 					$p->the_post();
 					echo '
-						<option value="' . get_the_ID() . '">' . get_the_title() . ' (' . ucfirst(get_post_type(get_the_ID())) . ')</option>';
+						<option value="' . get_the_name() . '">' . get_the_title() . ' (' . ucfirst(get_post_type(get_the_ID())) . ')</option>';
 				endwhile;
 			endif;
 			
@@ -175,6 +184,18 @@ if (!class_exists('Related_art')) :
 				if (!empty($related)) :
 					$rel = array();
 					foreach ($related as $r) :
+						if (!is_numeric($r)) {
+							$args=array(
+								'name' => $r,
+								'post_type' => 'post',
+								'post_status' => 'publish',
+								'posts_per_page' => 1
+							);
+							$this_posts = get_posts( $args );
+							if( $my_posts ) {
+								$r = $this_posts[0]->ID;
+							}
+						}
 						$p = get_post($r);
 						$rel[] = $p;
 					endforeach;
